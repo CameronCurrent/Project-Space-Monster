@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c23qjmyfpi4f1"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/Tim/command_dash_tim.gd" id="1_xsr6y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0rqra"]
+radius = 30.0
+height = 200.0
+
+[node name="Command Dash Tim" type="Area2D"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_xsr6y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(110, -10)
+shape = SubResource("CapsuleShape2D_0rqra")
+
+[node name="HitBoxTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="HitBoxTimer" to="." method="_on_hit_box_timer_timeout"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlq75e5sq8fc7"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/Tim/standing_kick_tim.gd" id="1_rd74a"]
+
+[sub_resource type="Curve2D" id="Curve2D_nsktb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -153, 166, 0, 0, 0, 0, -61, 141, 0, 0, 0, 0, 85, 20, 0, 0, 0, 0, 154, -5)
+}
+point_count = 4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ok76q"]
+radius = 30.0832
+
+[node name="Standing Kick Tim" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(36, -47)
+curve = SubResource("Curve2D_nsktb")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-153, 166)
+rotation = -0.265332
+
+[node name="Standing Kick Tim" type="Area2D" parent="Path2D/PathFollow2D"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_rd74a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Standing Kick Tim"]
+shape = SubResource("CircleShape2D_ok76q")
+
+[node name="HitBoxTimer" type="Timer" parent="Path2D/PathFollow2D/Standing Kick Tim"]
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/Standing Kick Tim" to="Path2D/PathFollow2D/Standing Kick Tim" method="_on_body_entered"]
+[connection signal="timeout" from="Path2D/PathFollow2D/Standing Kick Tim/HitBoxTimer" to="Path2D/PathFollow2D/Standing Kick Tim" method="_on_hit_box_timer_timeout"]

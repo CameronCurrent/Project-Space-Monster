@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://biswbcsboa4du"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/Tim/Crouching Heavy One.gd" id="1_d0a52"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y2m74"]
+radius = 21.0
+height = 178.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f7b7y"]
+radius = 14.0
+height = 170.0
+
+[node name="Crouching Heavy Tim" type="Node2D"]
+
+[node name="Boxes" type="Node2D" parent="."]
+
+[node name="Crouching Heavy One" type="Area2D" parent="Boxes"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_d0a52")
+
+[node name="Crouching Heavy Two" type="Area2D" parent="Boxes/Crouching Heavy One"]
+collision_layer = 6
+collision_mask = 6
+
+[node name="Crouching Heavy Two Box" type="CollisionShape2D" parent="Boxes/Crouching Heavy One/Crouching Heavy Two"]
+position = Vector2(156, 82)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_y2m74")
+
+[node name="Crouching Heavy One Box" type="CollisionShape2D" parent="Boxes/Crouching Heavy One"]
+position = Vector2(152, 90)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_f7b7y")
+
+[node name="HitBoxTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Boxes/Crouching Heavy One" to="Boxes/Crouching Heavy One" method="_on_body_entered"]
+[connection signal="body_entered" from="Boxes/Crouching Heavy One/Crouching Heavy Two" to="Boxes/Crouching Heavy One" method="_on_crouching_heavy_two_body_entered"]
+[connection signal="timeout" from="HitBoxTimer" to="Boxes/Crouching Heavy One" method="_on_hit_box_timer_timeout"]

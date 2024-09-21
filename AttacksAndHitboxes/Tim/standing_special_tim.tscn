@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgovau01vhi4w"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/Tim/standing_special_tim.gd" id="1_2pdct"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i4vpx"]
+radius = 16.0312
+
+[node name="Standing Special Tim" type="Area2D"]
+position = Vector2(219, 18)
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_2pdct")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i4vpx")
+
+[node name="HitBoxTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="HitBoxTimer" to="." method="_on_hit_box_timer_timeout"]

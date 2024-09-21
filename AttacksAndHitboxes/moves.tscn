@@ -1,0 +1,48 @@
+[gd_scene load_steps=13 format=3 uid="uid://bd86reto2nndv"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/moves.gd" id="1_pbrst"]
+[ext_resource type="PackedScene" uid="uid://coxets13yql5n" path="res://AttacksAndHitboxes/Tim/standing_punch_tim.tscn" id="2_dcpl4"]
+[ext_resource type="PackedScene" uid="uid://dlq75e5sq8fc7" path="res://AttacksAndHitboxes/Tim/standing_kick_tim.tscn" id="3_ej7bp"]
+[ext_resource type="PackedScene" uid="uid://cgovau01vhi4w" path="res://AttacksAndHitboxes/Tim/standing_special_tim.tscn" id="4_mekaf"]
+[ext_resource type="PackedScene" uid="uid://bn6lrqgejsfyc" path="res://AttacksAndHitboxes/Tim/standing_heavy_tim.tscn" id="5_o1b6m"]
+[ext_resource type="PackedScene" uid="uid://dcsd0lpoecu2b" path="res://AttacksAndHitboxes/Tim/jumping_punch_tim.tscn" id="6_ft3q8"]
+[ext_resource type="PackedScene" uid="uid://c8ucdahqvvaja" path="res://AttacksAndHitboxes/Tim/jumping_kick_tim.tscn" id="7_yxkjo"]
+[ext_resource type="PackedScene" uid="uid://b2r6c7o6ftcv6" path="res://AttacksAndHitboxes/Tim/jumping_special_tim.tscn" id="8_sx6vj"]
+[ext_resource type="PackedScene" uid="uid://b6td4hqssaip1" path="res://AttacksAndHitboxes/Tim/jumping_heavy_tim.tscn" id="9_grtxq"]
+[ext_resource type="PackedScene" uid="uid://qjmhlkn72wuy" path="res://AttacksAndHitboxes/Tim/crouching_punch_tim.tscn" id="10_t6j6g"]
+[ext_resource type="PackedScene" uid="uid://bc81e1nmv0dup" path="res://AttacksAndHitboxes/Tim/crouching_kick_tim.tscn" id="11_accy6"]
+[ext_resource type="PackedScene" uid="uid://cj867iwravajk" path="res://AttacksAndHitboxes/Tim/crouching_special_tim.tscn" id="12_4amky"]
+
+[node name="Moves" type="Area2D"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_pbrst")
+
+[node name="Timothy" type="Node2D" parent="."]
+
+[node name="Standing Punch Tim" parent="Timothy" instance=ExtResource("2_dcpl4")]
+
+[node name="Standing Kick Tim" parent="Timothy" instance=ExtResource("3_ej7bp")]
+
+[node name="Standing Special Tim" parent="Timothy" instance=ExtResource("4_mekaf")]
+
+[node name="Standing Heavy Tim" parent="Timothy" instance=ExtResource("5_o1b6m")]
+
+[node name="Jumping Punch Tim" parent="Timothy" instance=ExtResource("6_ft3q8")]
+
+[node name="Jumping Kick Tim" parent="Timothy" instance=ExtResource("7_yxkjo")]
+
+[node name="Jumping Special Tim" parent="Timothy" instance=ExtResource("8_sx6vj")]
+
+[node name="Jumping Heavy Tim" parent="Timothy" instance=ExtResource("9_grtxq")]
+
+[node name="Crouching Punch Tim" parent="Timothy" instance=ExtResource("10_t6j6g")]
+
+[node name="Crouching Kick Tim" parent="Timothy" instance=ExtResource("11_accy6")]
+
+[node name="Crouching Special Tim" parent="Timothy" instance=ExtResource("12_4amky")]
+
+[node name="Crouching Special Tim2" parent="Timothy" instance=ExtResource("12_4amky")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

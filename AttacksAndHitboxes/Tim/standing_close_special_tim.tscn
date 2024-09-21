@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://hqv56pnqa51t"]
+
+[node name="Standing Close Special Tim" type="Area2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(112, -68)
+polygon = PackedVector2Array(42, 10, 33, 37, -26, 18, -97, -30, -83, -47, -20, -5, 10, 4)

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2r6c7o6ftcv6"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/Tim/Jumping Special Tim.gd" id="1_0sw2x"]
+
+[node name="Jumping Special Tim" type="Area2D"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_0sw2x")
+
+[node name="HitBox" type="CollisionPolygon2D" parent="."]
+position = Vector2(81, -57)
+polygon = PackedVector2Array(89, 141, 117, 131, 4, -11, -20, 1, 45, 92)
+
+[node name="HitBoxTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="HitBoxTimer" to="." method="_on_hit_box_timer_timeout"]

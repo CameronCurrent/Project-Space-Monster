@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctg4cw3ccdbmj"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/Tim/Special Command One Tim.gd" id="1_2aojm"]
+
+[sub_resource type="Curve2D" id="Curve2D_n3lq2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 157, 186, 0, 0, 0, 0, 193, 159, 0, 0, 0, 0, 208, 121, 0, 0, 0, 0, 209, 30)
+}
+point_count = 4
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ioem"]
+radius = 28.758
+height = 104.994
+
+[node name="Special Command One Tim" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-16, -176)
+curve = SubResource("Curve2D_n3lq2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(157, 186)
+rotation = -0.643501
+loop = false
+
+[node name="Special Command One Tim" type="Area2D" parent="Path2D/PathFollow2D"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_2aojm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Special Command One Tim"]
+position = Vector2(5.11923, 3.71395)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1ioem")
+
+[node name="HitBoxTimer" type="Timer" parent="Path2D/PathFollow2D/Special Command One Tim"]
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/Special Command One Tim" to="Path2D/PathFollow2D/Special Command One Tim" method="_on_body_entered"]
+[connection signal="timeout" from="Path2D/PathFollow2D/Special Command One Tim/HitBoxTimer" to="Path2D/PathFollow2D/Special Command One Tim" method="_on_hit_box_timer_timeout"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8ucdahqvvaja"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/Tim/Jumping Kick Tim.gd" id="1_jxa8i"]
+
+[sub_resource type="Curve2D" id="Curve2D_p42h8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -36, 224, 0, 0, 0, 0, -106, 203, 0, 0, 0, 0, -154, 168, 0, 0, 0, 0, -164, 139, 0, 0, 0, 0, -184, 99, 0, 0, 0, 0, -186, 52, 0, 0, 0, 0, -177, -6, 0, 0, 0, 0, -154, -54, 0, 0, 0, 0, -98, -93, 0, 0, 0, 0, -27, -124, 0, 0, 0, 0, 33, -95, 0, 0, 0, 0, 61, -73, 0, 0, 0, 0, 91, -59, 0, 0, 0, 0, 100, 10, 0, 0, 0, 0, 123, 46, 0, 0, 0, 0, 139, 122, 0, 0, 0, 0, 124, 202, 0, 0, 0, 0, 124, 203, 0, 0, 0, 0, 124, 203)
+}
+point_count = 19
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gndl5"]
+radius = 28.2843
+
+[node name="Jumping Kick Tim" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(35, -44)
+curve = SubResource("Curve2D_p42h8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-36, 224)
+rotation = -2.85014
+loop = false
+
+[node name="Jumping Kick Tim" type="Area2D" parent="Path2D/PathFollow2D"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_jxa8i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Jumping Kick Tim"]
+shape = SubResource("CircleShape2D_gndl5")
+
+[node name="HitBoxTimer" type="Timer" parent="Path2D/PathFollow2D/Jumping Kick Tim"]
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/Jumping Kick Tim" to="Path2D/PathFollow2D/Jumping Kick Tim" method="_on_body_entered"]
+[connection signal="timeout" from="Path2D/PathFollow2D/Jumping Kick Tim/HitBoxTimer" to="Path2D/PathFollow2D/Jumping Kick Tim" method="_on_hit_box_timer_timeout"]

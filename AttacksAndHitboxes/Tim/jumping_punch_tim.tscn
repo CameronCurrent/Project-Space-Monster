@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcsd0lpoecu2b"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/Tim/jumping_punch_tim.gd" id="1_3br5w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_438qs"]
+radius = 15.0
+
+[node name="Jumping Punch Tim" type="Area2D"]
+position = Vector2(132, -63)
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_3br5w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_438qs")
+
+[node name="HitBoxTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="HitBoxTimer" to="." method="_on_hit_box_timer_timeout"]

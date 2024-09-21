@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj867iwravajk"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/Tim/Crouching Special Tim.gd" id="1_27tjo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fydbr"]
+size = Vector2(61.9491, 31.3258)
+
+[node name="Crouching Special Tim" type="Area2D"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_27tjo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(213.692, -146.856)
+rotation = -0.801106
+shape = SubResource("RectangleShape2D_fydbr")
+
+[node name="HitBoxTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="HitBoxTimer" to="." method="_on_hit_box_timer_timeout"]

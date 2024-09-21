@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn6lrqgejsfyc"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/Tim/Standing Heavy Tim.gd" id="1_k3qoj"]
+
+[sub_resource type="Curve2D" id="Curve2D_7fo4m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 104, -118, 0, 0, 0, 0, 104, 179)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o00p7"]
+size = Vector2(58, 93)
+
+[node name="Standing Heavy Tim" type="Node2D"]
+
+[node name="Standing Heavy Path" type="Path2D" parent="."]
+position = Vector2(37, -51)
+curve = SubResource("Curve2D_7fo4m")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Standing Heavy Path"]
+position = Vector2(104, -118)
+rotation = 1.5708
+loop = false
+
+[node name="Standing Heavy Tim" type="Area2D" parent="Standing Heavy Path/PathFollow2D"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_k3qoj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Standing Heavy Path/PathFollow2D/Standing Heavy Tim"]
+position = Vector2(-6, -8.5)
+shape = SubResource("RectangleShape2D_o00p7")
+
+[node name="HitBoxTimer" type="Timer" parent="Standing Heavy Path/PathFollow2D/Standing Heavy Tim"]
+
+[connection signal="body_entered" from="Standing Heavy Path/PathFollow2D/Standing Heavy Tim" to="Standing Heavy Path/PathFollow2D/Standing Heavy Tim" method="_on_body_entered"]
+[connection signal="timeout" from="Standing Heavy Path/PathFollow2D/Standing Heavy Tim/HitBoxTimer" to="Standing Heavy Path/PathFollow2D/Standing Heavy Tim" method="_on_hit_box_timer_timeout"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnuiy6kaqburl"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/Tim/Special Command Two Hitbox.gd" id="1_488rp"]
+
+[sub_resource type="Curve2D" id="Curve2D_0djlk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 74, -77, 0, 0, 0, 0, 149, 17, 0, 0, 0, 0, 152, 58, 0, 0, 0, 0, 192, 126, 0, 0, 0, 0, 207, 84, 0, 0, 0, 0, 224, 53, 0, 0, 0, 0, 231, -86, 0, 0, 0, 0, 198, -168)
+}
+point_count = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bp0rk"]
+size = Vector2(50.8757, 28.4897)
+
+[node name="Special Command Two Tim" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0djlk")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(74, -77)
+rotation = 0.897354
+loop = false
+
+[node name="Special Command Two Hitbox" type="Area2D" parent="Path2D/PathFollow2D"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_488rp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Special Command Two Hitbox"]
+position = Vector2(7.62939e-06, 7.62939e-06)
+shape = SubResource("RectangleShape2D_bp0rk")
+
+[node name="HitBoxTimer" type="Timer" parent="Path2D/PathFollow2D/Special Command Two Hitbox"]
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/Special Command Two Hitbox" to="Path2D/PathFollow2D/Special Command Two Hitbox" method="_on_body_entered"]
+[connection signal="timeout" from="Path2D/PathFollow2D/Special Command Two Hitbox/HitBoxTimer" to="Path2D/PathFollow2D/Special Command Two Hitbox" method="_on_hit_box_timer_timeout"]

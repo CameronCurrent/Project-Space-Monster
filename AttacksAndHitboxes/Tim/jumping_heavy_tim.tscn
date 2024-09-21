@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6td4hqssaip1"]
+
+[ext_resource type="Script" path="res://AttacksAndHitboxes/Tim/Jumping Heavy Tim.gd" id="1_7158i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8emmf"]
+size = Vector2(70.5592, 40.2375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pg24n"]
+size = Vector2(66.4446, 36.8891)
+
+[node name="Jumping Heavy Tim" type="Node2D"]
+
+[node name="Boxes" type="Node2D" parent="."]
+
+[node name="Jumping Heavy" type="Area2D" parent="Boxes"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_7158i")
+
+[node name="Box Two" type="Area2D" parent="Boxes/Jumping Heavy"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="SecondHitBox" type="CollisionShape2D" parent="Boxes/Jumping Heavy/Box Two"]
+position = Vector2(190.3, 0.273699)
+rotation = -0.359538
+shape = SubResource("RectangleShape2D_8emmf")
+
+[node name="FirstHitBox" type="CollisionShape2D" parent="Boxes/Jumping Heavy"]
+position = Vector2(191.589, 43.8665)
+rotation = 0.261799
+shape = SubResource("RectangleShape2D_pg24n")
+
+[node name="HitBoxTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Boxes/Jumping Heavy" to="Boxes/Jumping Heavy" method="_on_body_entered"]
+[connection signal="body_entered" from="Boxes/Jumping Heavy/Box Two" to="Boxes/Jumping Heavy" method="_on_box_two_body_entered"]
+[connection signal="timeout" from="HitBoxTimer" to="Boxes/Jumping Heavy" method="_on_hit_box_timer_timeout"]
+[connection signal="timeout" from="HitBoxTimer" to="Boxes/Jumping Heavy/Box Two" method="_on_hit_box_timer_timeout"]
