@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2nhl07cibkn0"]
+
+[ext_resource type="Script" path="res://Characters/base_character.gd" id="1_uuw66"]
+[ext_resource type="PackedScene" uid="uid://tf5at8jjarjn" path="res://Characters/Timothy.tscn" id="2_41lgh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3mmpu"]
+
+[node name="BaseCharacter" type="CharacterBody2D"]
+script = ExtResource("1_uuw66")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_3mmpu")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Timothy" parent="." instance=ExtResource("2_41lgh")]
