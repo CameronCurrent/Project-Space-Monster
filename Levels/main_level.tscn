@@ -1,0 +1,133 @@
+[gd_scene load_steps=15 format=3 uid="uid://tw8ngmywf0sk"]
+
+[ext_resource type="Script" path="res://Levels/Characters.gd" id="1_8ot1a"]
+[ext_resource type="PackedScene" uid="uid://tf5at8jjarjn" path="res://Characters/Timothy.tscn" id="1_gjsfl"]
+[ext_resource type="Script" path="res://Levels/main_level.gd" id="1_jmk51"]
+[ext_resource type="Texture2D" uid="uid://b5dl2v6u2331y" path="res://Stages/Background 1.png" id="2_28dae"]
+[ext_resource type="Script" path="res://Levels/Player 1 Bars.gd" id="4_qxm4f"]
+[ext_resource type="Script" path="res://Levels/Player 2 Bars.gd" id="5_wxq3d"]
+[ext_resource type="Texture2D" uid="uid://dmyfgkafiomee" path="res://HUD Sprites/GT Meter under.png" id="6_s3sfr"]
+[ext_resource type="Texture2D" uid="uid://dxw84uils8ux1" path="res://HUD Sprites/GT Meter over.png" id="7_1bcea"]
+[ext_resource type="Texture2D" uid="uid://ciyc1ega5hvxs" path="res://HUD Sprites/GT Meter progress.png" id="8_rfflk"]
+[ext_resource type="Texture2D" uid="uid://yfya1gqf84wn" path="res://HUD Sprites/Health Bar under.png" id="9_8v5gl"]
+[ext_resource type="Texture2D" uid="uid://btp7g2l7ve1jj" path="res://HUD Sprites/Health Bar progress.png" id="10_857yi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ex37o"]
+size = Vector2(2139.5, 180.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dt5qy"]
+size = Vector2(211, 1188)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qc8sv"]
+size = Vector2(207, 1175)
+
+[node name="MainLevel" type="Node2D"]
+script = ExtResource("1_jmk51")
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+collision_layer = 48
+collision_mask = 48
+
+[node name="Main 4" type="Sprite2D" parent="Area2D"]
+position = Vector2(998.75, 120)
+scale = Vector2(0.8066, 0.635)
+texture = ExtResource("2_28dae")
+
+[node name="Main 3" type="Sprite2D" parent="Area2D"]
+position = Vector2(1662, 566)
+scale = Vector2(1, 0.6255)
+texture = ExtResource("2_28dae")
+
+[node name="Main 2" type="Sprite2D" parent="Area2D"]
+position = Vector2(275, 570)
+scale = Vector2(0.7092, 0.62075)
+texture = ExtResource("2_28dae")
+
+[node name="Main" type="Sprite2D" parent="Area2D"]
+position = Vector2(999, 567)
+scale = Vector2(0.8157, 0.624875)
+texture = ExtResource("2_28dae")
+offset = Vector2(0, -3)
+
+[node name="Floor" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(999.25, 1094)
+shape = SubResource("RectangleShape2D_ex37o")
+
+[node name="Left Wall" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-90, 587)
+shape = SubResource("RectangleShape2D_dt5qy")
+
+[node name="Right Wall" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2070, 595)
+shape = SubResource("RectangleShape2D_qc8sv")
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Characters" type="Node2D" parent="."]
+script = ExtResource("1_8ot1a")
+
+[node name="Player 1 Spawn" type="Marker2D" parent="Characters"]
+position = Vector2(750, 800)
+
+[node name="Timothy" parent="Characters/Player 1 Spawn" instance=ExtResource("1_gjsfl")]
+
+[node name="Player 2 Spawn" type="Marker2D" parent="Characters"]
+position = Vector2(1250, 800)
+
+[node name="Timothy2" parent="Characters/Player 2 Spawn" instance=ExtResource("1_gjsfl")]
+
+[node name="MidCamera" type="Camera2D" parent="Characters"]
+position = Vector2(1000, 630)
+offset = Vector2(0, -200)
+
+[node name="Player 1 Bars" type="Node2D" parent="Characters/MidCamera"]
+script = ExtResource("4_qxm4f")
+
+[node name="Player One Meter" type="TextureProgressBar" parent="Characters/MidCamera/Player 1 Bars"]
+offset_left = -875.0
+offset_top = 146.0
+offset_right = -43.0
+offset_bottom = 337.0
+scale = Vector2(0.75, 0.75)
+max_value = 200.0
+fill_mode = 1
+texture_under = ExtResource("6_s3sfr")
+texture_over = ExtResource("7_1bcea")
+texture_progress = ExtResource("8_rfflk")
+
+[node name="Player One Health Bar" type="TextureProgressBar" parent="Characters/MidCamera/Player 1 Bars"]
+offset_left = -945.0
+offset_top = -690.0
+offset_right = 55.0
+offset_bottom = -490.0
+scale = Vector2(0.9, 0.9)
+fill_mode = 1
+texture_under = ExtResource("9_8v5gl")
+texture_progress = ExtResource("10_857yi")
+
+[node name="Player 2 Bars" type="Node2D" parent="Characters/MidCamera"]
+script = ExtResource("5_wxq3d")
+
+[node name="Player Two Meter" type="TextureProgressBar" parent="Characters/MidCamera/Player 2 Bars"]
+offset_left = 886.0
+offset_top = 146.0
+offset_right = 1761.0
+offset_bottom = 337.0
+scale = Vector2(-0.75, 0.75)
+max_value = 200.0
+fill_mode = 1
+texture_under = ExtResource("6_s3sfr")
+texture_over = ExtResource("7_1bcea")
+texture_progress = ExtResource("8_rfflk")
+
+[node name="Player Two Health Bar" type="TextureProgressBar" parent="Characters/MidCamera/Player 2 Bars"]
+offset_left = 945.0
+offset_top = -690.0
+offset_right = 1945.0
+offset_bottom = -490.0
+scale = Vector2(-0.9, 0.9)
+fill_mode = 1
+texture_under = ExtResource("9_8v5gl")
+texture_progress = ExtResource("10_857yi")
+
+[connection signal="projectile" from="Characters/Player 1 Spawn/Timothy" to="." method="_on_timothy_projectile"]
